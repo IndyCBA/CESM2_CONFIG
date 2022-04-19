@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 
-<config_batch>
+<config_batch version="2.0">
 
-  <batch_system MACH="serafin" type="slurm">
+<batch_system MACH="Serafin" type="slurm">
     <batch_submit>sbatch</batch_submit>
     <jobid_pattern>job (\d+)</jobid_pattern>
     <submit_args>
@@ -13,3 +13,5 @@
        <queue walltimemin="00:15:00" walltimemax="01:00:00" nodemin="1" nodemax="24" default="false">short</queue>
        <queue walltimemin="00:15:00" walltimemax="48:00:00" nodemin="1" nodemax="24" default="true">multi</queue>
     </queues>
+</batch_system>
+</config_batch>
