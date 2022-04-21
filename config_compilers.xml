@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<config_compilers version="2.0">
+
+  <compiler MACH="Serafin" COMPILER="gnu">
+    <SLIBS>
+      <append> -lnetcdff -lnetcdf -L$(PNETCDF_PATH)/lib -lpnetcdf</append>
+    </SLIBS>
+    <FFLAGS> 
+      <append> -fallow-argument-mismatch  </append>
+    </FFLAGS>
+    <NETCDF_C_PATH>$ENV{SPACK_ROOT}/opt/spack/linux-rocky8-zen2/gcc-11.2.0/netcdf-c-*</NETCDF_C_PATH>
+    <NETCDF_FORTRAN_PATH>$ENV{SPACK_ROOT}/opt/spack/linux-rocky8-zen2/gcc-11.2.0/netcdf-fortran-*</NETCDF_FORTRAN_PATH>
+    <PNETCDF_PATH>$ENV{SPACK_ROOT}/opt/spack/linux-rocky8-zen2/gcc-11.2.0/parallel-netcdf-1.12.2-5gwbt7mhaz6df62kvnla3zgvrmqtizkr</PNETCDF_PATH>
+  </compiler>
+
+</config_compilers>
