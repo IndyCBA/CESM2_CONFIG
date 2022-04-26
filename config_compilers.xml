@@ -4,14 +4,14 @@
 
   <compiler MACH="Serafin" COMPILER="gnu">
     <SLIBS>
-      <append> -lnetcdff -lnetcdf -L$(PNETCDF_PATH)/lib -lpnetcdf</append>
+      <append> -lnetcdff -lnetcdf -I${HOME}/PnetCDF/include  -L${HOME}/PnetCDF/lib</append>
     </SLIBS>
     <FFLAGS> 
       <append> -fallow-argument-mismatch  </append>
     </FFLAGS>
-    <NETCDF_C_PATH>$ENV{SPACK_ROOT}/opt/spack/linux-rocky8-zen2/gcc-11.2.0/netcdf-c-*</NETCDF_C_PATH>
-    <NETCDF_FORTRAN_PATH>$ENV{SPACK_ROOT}/opt/spack/linux-rocky8-zen2/gcc-11.2.0/netcdf-fortran-*</NETCDF_FORTRAN_PATH>
-    <PNETCDF_PATH>$ENV{SPACK_ROOT}/opt/spack/linux-rocky8-zen2/gcc-11.2.0/parallel-netcdf-1.12.2-5gwbt7mhaz6df62kvnla3zgvrmqtizkr</PNETCDF_PATH>
+    <NETCDF_C_PATH>/opt/ccad/21.11/software/linux-rocky8-zen2/gcc-11.2.0/netcdf-c-4.8.0-oiohit2beg7r46ssg4vjjdthwkny4vky</NETCDF_C_PATH>
+    <NETCDF_FORTRAN_PATH>/opt/ccad/21.11/software/linux-rocky8-zen2/gcc-11.2.0/netcdf-fortran-4.5.3-4l6jsltkyvsmpwc2hrmlnj24plfoocsu</NETCDF_FORTRAN_PATH>
+    <PNETCDF_PATH>$ENV{HOME}/PnetCDF</PNETCDF_PATH>
   </compiler>
 
 </config_compilers>

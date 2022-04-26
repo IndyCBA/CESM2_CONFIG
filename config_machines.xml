@@ -111,20 +111,18 @@
       </modules>
       <modules compiler="gnu">
 	<command name="load">gcc/11.2.0</command>
-      </modules>
-      <modules>
-	<command name="load">openmpi/4.1.2rc1</command>
 	<command name="load">cmake/3.21.3</command>
-	<command name="load">netcdf-c-4.8.1-gcc-11.2.0-cxpuqnv</command>
-	<command name="load">netcdf-fortran-4.5.3-gcc-11.2.0-lzuhn7d</command>
-	<command name="load">parallel-netcdf-1.12.2-gcc-11.2.0-2enkx7f</command>
+	<command name="load">openmpi/4.1.2rc1</command>
+	<command name="load">netcdf-c/4.8.0</command>
+	<command name="load">netcdf-fortran/4.5.3</command>
+	<!--command name="load">parallel-netcdf-1.12.2-gcc-11.2.0-2enkx7f</command-->
       </modules>
     </module_system>
 <!-- environment variables, a blank entry will unset a variable -->
     <environment_variables>
       <env name="OMP_STACKSIZE">256M</env>
       <env name="MPI_TYPE_DEPTH">16</env>
-      <env name="PNETCDF_PATH">$ENV{SPACK_ROOT}/opt/spack/linux-rocky8-zen2/gcc-11.2.0/parallel-netcdf-1.12.2-5gwbt7mhaz6df62kvnla3zgvrmqtizkr</env>
+      <!--env name="PNETCDF_PATH">$ENV{SPACK_ROOT}/opt/spack/linux-rocky8-zen2/gcc-11.2.0/parallel-netcdf-1.12.2-5gwbt7mhaz6df62kvnla3zgvrmqtizkr</env-->
     </environment_variables>
     <!-- resource settings as defined in https://docs.python.org/2/library/resource.html -->
     <resource_limits>
