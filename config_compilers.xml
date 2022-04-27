@@ -4,7 +4,7 @@
 
   <compiler MACH="Serafin" COMPILER="gnu">
     <SLIBS>
-      <append> -lnetcdff -lnetcdf -I${HOME}/PnetCDF/include  -L${HOME}/PnetCDF/lib</append>
+      <append> -lnetcdff -lnetcdf -I$ENV{HOME}/PnetCDF/include  -L$ENV{HOME}/PnetCDF/lib</append>
     </SLIBS>
     <FFLAGS> 
       <append> -fallow-argument-mismatch  </append>
