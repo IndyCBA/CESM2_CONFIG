@@ -27,7 +27,7 @@
 
     <!-- CIME_OUTPUT_ROOT: Base directory for case output,
 	 the case/bld and case/run directories are written below here -->
-    <CIME_OUTPUT_ROOT>/tmp/$USER</CIME_OUTPUT_ROOT>
+    <CIME_OUTPUT_ROOT>$ENV{HOME}/scratch</CIME_OUTPUT_ROOT>
 
     <!-- DIN_LOC_ROOT: location of the inputdata data directory
 	 inputdata is downloaded automatically on a case by case basis as
