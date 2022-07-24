@@ -3,8 +3,9 @@
 <config_compilers version="2.0">
 
   <compiler MACH="Serafin" COMPILER="gnu">
+    <LAPACK_LIBDIR> $ENV{HOME}/lapack-3.10.1/ </LAPACK_LIBDIR>
     <SLIBS>
-      <append> -lnetcdff -lnetcdf -I$ENV{HOME}/PnetCDF/include  -L$ENV{HOME}/PnetCDF/lib</append>
+      <append> -lnetcdff -lnetcdf -I$ENV{HOME}/PnetCDF/include  -L$ENV{HOME}/PnetCDF/lib -lblas -L$ENV{HOME}/BLAS-3.10.0/ -llapack -L$ENV{HOME}/lapack-3.10.1/</append>
     </SLIBS>
     <FFLAGS> 
       <append> -fallow-argument-mismatch -fallow-invalid-boz </append>
