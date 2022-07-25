@@ -113,8 +113,8 @@
 	<command name="load">netcdf-c</command>
 	<command name="load">netcdf-fortran</command>
 	<command name="load">cmake</command>
-	<command name="load">python-3.9.13-gcc-11.2.0-jiekxu2</command>
-	<command name="load">tcsh-6.24.00-gcc-11.2.0-d4krqab</command>
+	<command name="load">$ENV{PYTHONMODULE}</command>
+	<command name="load">$ENV{TCSHMODULE}</command>
 	<!--command name="load">parallel-netcdf-1.12.2-gcc-11.2.0-2enkx7f</command-->
       </modules>
     </module_system>
