@@ -5,13 +5,13 @@
   <compiler MACH="Serafin" COMPILER="gnu">
     <LAPACK_LIBDIR> $ENV{HOME}/lapack-3.10.1/ </LAPACK_LIBDIR>
     <SLIBS>
-      <append> -lnetcdff -lnetcdf -I$ENV{HOME}/PnetCDF/include  -L$ENV{HOME}/PnetCDF/lib -lblas -L$ENV{HOME}/BLAS-3.10.0/ -llapack -L$ENV{HOME}/lapack-3.10.1/</append>
+      <append> -lnetcdff -lnetcdf -I$ENV{HOME}/PnetCDF/include  -L$ENV{HOME}/PnetCDF/lib -lblas -L$ENV{HOME}/BLAS-3.10.0/ -llapack -L$ENV{HOME}/lapack-3.10.1/ -mcmodel=medium</append>
     </SLIBS>
     <FFLAGS> 
-      <append> -fallow-argument-mismatch -fallow-invalid-boz </append>
+      <append> -O2 -fallow-argument-mismatch -fallow-invalid-boz -mcmodel=medium</append>
     </FFLAGS>
-    <NETCDF_C_PATH>/opt/ccad/21.11/software/linux-rocky8-zen2/gcc-11.2.0/netcdf-c-4.8.0-oiohit2beg7r46ssg4vjjdthwkny4vky</NETCDF_C_PATH>
-    <NETCDF_FORTRAN_PATH>/opt/ccad/21.11/software/linux-rocky8-zen2/gcc-11.2.0/netcdf-fortran-4.5.3-4l6jsltkyvsmpwc2hrmlnj24plfoocsu</NETCDF_FORTRAN_PATH>
+    <NETCDF_C_PATH>/ccad/stack/23.09/env/base/linux-rocky8-zen2/gcc-12.3.0/netcdf-c-4.9.2-3djd62b6x53g7l35g2itriqfnqnsvboh</NETCDF_C_PATH>
+    <NETCDF_FORTRAN_PATH>/ccad/stack/23.09/env/base/linux-rocky8-zen2/gcc-12.3.0/netcdf-fortran-4.6.0-ikpplywapa4qqhjounsshuycyq2xoext</NETCDF_FORTRAN_PATH>
     <PNETCDF_PATH>$ENV{HOME}/PnetCDF</PNETCDF_PATH>
   </compiler>
 
