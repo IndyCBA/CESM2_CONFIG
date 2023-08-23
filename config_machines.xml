@@ -117,6 +117,8 @@
 	<command name="load">cmake</command>
 	<command name="load">--silent python</command>
 	<command name="load">--silent tcsh</command>
+	<command name="load">--silent bc</command>
+	<command name="load">--silent perl-bignum</command>
 	<!--command name="load">parallel-netcdf-1.12.2-gcc-11.2.0-2enkx7f</command-->
       </modules>
     </module_system>
