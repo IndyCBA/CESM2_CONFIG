@@ -8,8 +8,11 @@
       <append> -lnetcdff -lnetcdf -I$ENV{HOME}/PnetCDF/include  -L$ENV{HOME}/PnetCDF/lib -lblas -L$ENV{HOME}/BLAS-3.10.0/ -llapack -L$ENV{HOME}/lapack-3.10.1/ -mcmodel=medium</append>
     </SLIBS>
     <FFLAGS> 
-      <append> -O2 -fallow-argument-mismatch -fallow-invalid-boz -mcmodel=medium</append>
+      <append> -O3 -march=znver2 -mtune=znver2 -fallow-argument-mismatch -fallow-invalid-boz -mcmodel=medium</append>
     </FFLAGS>
+    <CFLAGS>
+      <append DEBUG="FALSE"> -O3 -march=znver2 -mtune=znver2 </append>
+    </CFLAGS>
     <NETCDF_C_PATH>/ccad/stack/23.09/env/base/linux-rocky8-zen2/gcc-12.3.0/netcdf-c-4.9.2-3djd62b6x53g7l35g2itriqfnqnsvboh</NETCDF_C_PATH>
     <NETCDF_FORTRAN_PATH>/ccad/stack/23.09/env/base/linux-rocky8-zen2/gcc-12.3.0/netcdf-fortran-4.6.0-ikpplywapa4qqhjounsshuycyq2xoext</NETCDF_FORTRAN_PATH>
     <PNETCDF_PATH>$ENV{HOME}/PnetCDF</PNETCDF_PATH>
