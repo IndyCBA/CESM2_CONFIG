@@ -134,4 +134,149 @@
       <resource name="RLIMIT_STACK">-1</resource>
     </resource_limits>
   </machine>
+  <machine MACH="Mulatona">
+
+    <!-- DESC: a text description of the machine, this field is current not used in code-->
+    <DESC>Mulatona - cluster at CCAD - UNC, batch system is SLURM</DESC>
+
+	<!-- NODENAME_REGEX: a regular expression used to identify this machine
+	  it must work on compute nodes as well as login nodes, use machine option
+	  to create_test or create_newcase if this flag is not available -->
+    <NODENAME_REGEX>mulatona.ccad.unc.edu.ar|bdw\d\d.bdw.ccad.unc.edu.ar</NODENAME_REGEX>
+
+    <!-- OS: the operating system of this machine. Passed to cppflags for
+	 compiled programs as -DVALUE  recognized are LINUX, AIX, Darwin, CNL -->
+    <OS>LINUX</OS>
+    <!-- COMPILERS: compilers supported on this machine, comma seperated list, first is default -->
+
+    <COMPILERS>intel,gnu</COMPILERS>
+
+	<!-- MPILIBS: mpilibs supported on this machine, comma seperated list,
+	     first is default, mpi-serial is assumed and not required in this list-->
+    <MPILIBS>openmpi</MPILIBS>
+
+    <PROJECT>CESM2</PROJECT>
+
+    <!-- CIME_OUTPUT_ROOT: Base directory for case output,
+	 the case/bld and case/run directories are written below here -->
+    <CIME_OUTPUT_ROOT>$ENV{HOME}/scratch</CIME_OUTPUT_ROOT>
+
+    <!-- DIN_LOC_ROOT: location of the inputdata data directory
+	 inputdata is downloaded automatically on a case by case basis as
+	 long as the user has write access to this directory.   We recommend that
+	 all cime model users on a system share an inputdata directory
+	 as it can be quite large -->
+    <DIN_LOC_ROOT>$ENV{CESMDATAROOT}/inputdata</DIN_LOC_ROOT>
+
+    <!-- DIN_LOC_ROOT_CLMFORC: override of DIN_LOC_ROOT specific to CLM
+	 forcing data -->
+    <DIN_LOC_ROOT_CLMFORC>$ENV{CESMDATAROOT}/lmwg</DIN_LOC_ROOT_CLMFORC>
+
+    <!-- DOUT_S_ROOT: root directory of short term archive files, short term
+      archiving moves model output data out of the run directory, but
+      keeps it on disk-->
+    <DOUT_S_ROOT>$CIME_OUTPUT_ROOT/archive/$CASE</DOUT_S_ROOT>
+
+    <!-- BASELINE_ROOT:  Root directory for system test baseline files -->
+    <BASELINE_ROOT>$ENV{CESMDATAROOT}/cesm_baselines</BASELINE_ROOT>
+
+    <!-- CCSM_CPRNC: location of the cprnc tool, compares model output in testing-->
+    <CCSM_CPRNC>$ENV{CESMDATAROOT}/tools/cime/tools/cprnc/cprnc.cheyenne</CCSM_CPRNC>
+
+    <!-- GMAKE: gnu compatible make tool, default is 'gmake' -->
+    <GMAKE>gmake</GMAKE>
+
+    <!-- GMAKE_J: optional number of threads to pass to the gmake flag -->
+    <GMAKE_J>1</GMAKE_J>
+
+    <!-- BATCH_SYSTEM: batch system used on this machine,
+      supported values are: none, cobalt, lsf, pbs, slurm -->
+    <BATCH_SYSTEM>slurm</BATCH_SYSTEM>
+
+    <!-- SUPPORTED_BY: contact information for support for this system
+      this field is not used in code -->
+    <SUPPORTED_BY>no-one</SUPPORTED_BY>
+
+    <!-- MAX_TASKS_PER_NODE: maximum number of threads*tasks per
+	 shared memory node on this machine,
+	 should always be >= MAX_MPITASKS_PER_NODE -->
+    <MAX_TASKS_PER_NODE>32</MAX_TASKS_PER_NODE>
+
+    <!-- MAX_MPITASKS_PER_NODE: number of physical PES per shared node on
+	 this machine, in practice the MPI tasks per node will not exceed this value -->
+    <MAX_MPITASKS_PER_NODE>32</MAX_MPITASKS_PER_NODE>
+
+    <!-- PROJECT_REQUIRED: Does this machine require a project to be specified to
+	 the batch system?  See PROJECT above -->
+    <PROJECT_REQUIRED>TRUE</PROJECT_REQUIRED>
+
+    <!-- mpirun: The mpi exec to start a job on this machine, supported values
+	 are values listed in MPILIBS above, default and mpi-serial -->
+    <mpirun mpilib="default">
+      <!-- name of the exectuable used to launch mpi jobs -->
+      <executable>srun</executable>
+      <!-- arguments to the mpiexec command, the name attribute here is ignored-->
+      <arguments>
+        <arg name="num_tasks">-n {{ total_tasks }} -N {{ num_nodes }} --kill-on-bad-exit </arg>
+        <arg name="thread_count">-c $SHELL{echo 32/ {{ tasks_per_node }} |bc}</arg>
+        <arg name="binding"> $SHELL{if [ 32 -ge `./xmlquery --value MAX_MPITASKS_PER_NODE` ]; then echo "--cpu_bind=cores"; else echo "--cpu_bind=threads";fi;} </arg>
+        <arg name="placement">-m plane={{ tasks_per_node }}</arg>
+      </arguments>
+    </mpirun>
+    <!-- module system: allowed module_system type values are:
+	 module  http://www.tacc.utexas.edu/tacc-projects/mclay/lmod
+	 soft http://www.mcs.anl.gov/hs/software/systems/softenv/softenv-intro.html
+         none
+      -->
+    <module_system type="module">
+      <init_path lang="perl">/usr/share/Modules/init/perl.pm</init_path>
+      <init_path lang="python">/usr/share/Modules/init/python.py</init_path>
+      <init_path lang="sh">/usr/share/Modules/init/sh</init_path>
+      <init_path lang="csh">/usr/share/Modules/init/csh</init_path>
+      <cmd_path lang="perl">/usr/bin/modulecmd perl</cmd_path>
+      <cmd_path lang="python">/usr/bin/modulecmd python</cmd_path>
+      <cmd_path lang="sh">module</cmd_path>
+      <cmd_path lang="csh">module</cmd_path>
+      <modules>
+	<command name="purge"/>
+      </modules>
+      <modules compiler="gnu">
+        <command name="load">--silent gcc</command>
+	<command name="load">cmake</command>
+	<command name="load">--silent openmpi</command>
+	<command name="load">--silent netcdf-c</command>
+	<command name="load">--silent netcdf-fortran</command>
+	<command name="load">--silent python</command>
+	<command name="load">--silent tcsh</command>
+	<command name="load">--silent bc</command>
+	<command name="load">--silent perl-bignum</command>
+	<!--command name="load">parallel-netcdf-1.12.2-gcc-11.2.0-2enkx7f</command-->
+      </modules>
+      <modules compiler="intel">
+        <command name="load">oneapi</command>
+	<command name="load">cmake</command>
+	<command name="load">openmpi</command>
+	<command name="load">intel-oneapi-mkl</command>
+	<command name="load">netcdf-c</command>
+	<command name="load">netcdf-fortran</command>
+	<command name="load">--silent python</command>
+	<command name="load">--silent tcsh</command>
+	<command name="load">--silent bc</command>
+	<command name="load">--silent perl-bignum</command>
+	<command name="load">--silent autoconf</command>
+	<!--command name="load">parallel-netcdf-1.12.2-gcc-11.2.0-2enkx7f</command-->
+      </modules>
+    </module_system>
+<!-- environment variables, a blank entry will unset a variable -->
+    <environment_variables SMP_PRESENT="TRUE">
+      <env name="OMP_STACKSIZE">128M</env>
+    </environment_variables>
+    <environment_variables SMP_PRESENT="TRUE" compiler="gnu">
+      <env name="OMP_PLACES">cores</env>
+    </environment_variables>
+    <!-- resource settings as defined in https://docs.python.org/2/library/resource.html -->
+    <resource_limits>
+      <resource name="RLIMIT_STACK">-1</resource>
+    </resource_limits>
+  </machine>
 </config_machines>
