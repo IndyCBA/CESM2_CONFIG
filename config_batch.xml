@@ -28,4 +28,5 @@
        <queue walltimemin="00:15:00" walltimemax="164:00:00" nodemin="2" nodemax="5" default="false">batch</queue>
     </queues>
 </batch_system>
+<batch_system MACH="chameleon" type="none" />
 </config_batch>
