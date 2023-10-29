@@ -28,5 +28,15 @@
        <queue walltimemin="00:15:00" walltimemax="164:00:00" nodemin="2" nodemax="5" default="false">batch</queue>
     </queues>
 </batch_system>
-<batch_system MACH="chameleon" type="none" />
+<batch_system MACH="chameleon" type="slurm">
+    <batch_submit>sbatch</batch_submit>
+    <jobid_pattern>job (\d+)</jobid_pattern>
+    <submit_args>
+       <arg flag="-t" name="$JOB_WALLCLOCK_TIME"/>
+       <arg flag="-p" name="JOB_QUEUE"/>
+    </submit_args>
+    <queues>
+       <queue walltimemin="00:15:00" walltimemax="164:00:00" nodemin="1" nodemax="5" default="false">cpu</queue>
+    </queues>
+</batch_system>
 </config_batch>
