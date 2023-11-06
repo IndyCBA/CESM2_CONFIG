@@ -297,7 +297,7 @@
     <PROXY> https://howto.get.out </PROXY>
 	<!-- COMPILERS: compilers supported on this machine, comma seperated list, first is default -->
 
-    <COMPILERS>gnu</COMPILERS>
+    <COMPILERS>intel,gnu</COMPILERS>
 
 	<!-- MPILIBS: mpilibs supported on this machine, comma seperated list,
 	     first is default, mpi-serial is assumed and not required in this list-->
@@ -324,7 +324,7 @@
 
     <!-- CIME_OUTPUT_ROOT: Base directory for case output,
          the case/bld and case/run directories are written below here -->
-    <CIME_OUTPUT_ROOT>$ENV{HOME}/scratch</CIME_OUTPUT_ROOT>
+    <CIME_OUTPUT_ROOT>$ENV{HOME}/CESM_ROOT/scratch/</CIME_OUTPUT_ROOT>
 
     <!-- DIN_LOC_ROOT: location of the inputdata data directory
          inputdata is downloaded automatically on a case by case basis as
@@ -418,6 +418,19 @@
 	<command name="load">--silent gcc-11.3.1/intel-oneapi-mkl/2023.1.0-a5arw</command>
 	<command name="load">--silent gcc-11.3.1/parallel-netcdf/1.12.3-wzjw7</command>
 	<command name="load">--silent gcc-11.3.1/perl-xml-libxml/2.0201-j3d2g</command>
+	</modules>
+	<modules compiler="intel">
+	<command name="load">--silent gcc-11.3.1/intel-oneapi-compilers/2023.1.0-76fh6</command>
+        <command name="load">--silent gcc-11.3.1/cmake/3.27.7-y37tq</command>
+        <command name="load">--silent oneapi-2023.1.0/netcdf-c/4.9.2-7xscw</command>
+        <command name="load">--silent oneapi-2023.1.0/netcdf-fortran/4.6.1-hjmq7</command>
+        <command name="load">--silent gcc-11.3.1/python/3.11.6-ekdhx</command>
+        <command name="load">--silent gcc-11.3.1/tcsh/6.24.00-s3mdi</command>
+        <command name="load">--silent gcc-11.3.1/bc/1.07.1-feqx3</command>
+        <command name="load">--silent gcc-11.3.1/perl-bignum/0.66-ugn5d</command>
+        <command name="load">--silent oneapi-2023.1.0/intel-oneapi-mkl/2023.1.0-qslkc</command>
+        <command name="load">--silent oneapi-2023.1.0/openmpi/4.1.6-66u36</command>
+        <command name="load">--silent gcc-11.3.1/perl-xml-libxml/2.0201-j3d2g</command>
       </modules>
     </module_system>
     <environment_variables>

@@ -75,6 +75,29 @@
     <SFC>gfortran</SFC>
     <SCC>gcc</SCC>
     <SCXX>g++</SCXX>
-</compiler>
+  </compiler>
+  <compiler MACH="chameleon" COMPILER="intel">
+    <SLIBS>
+        <append> -lnetcdff -lnetcdf -I$ENV{HOME}/PnetCDF/include  -L$ENV{HOME}/PnetCDF/lib -lpnetcdf $ENV{INTEL_ONEAPI_MKL_ROOT}/lib/intel64/libmkl_scalapack_lp64.a -Wl,--start-group $ENV{INTEL_ONEAPI_MKL_ROOT}/lib/intel64/libmkl_intel_lp64.a $ENV{INTEL_ONEAPI_MKL_ROOT}/lib/intel64/libmkl_core.a $ENV{INTEL_ONEAPI_MKL_ROOT}/lib/intel64/libmkl_sequential.a -Wl,--end-group $ENV{INTEL_ONEAPI_MKL_ROOT}/lib/intel64/libmkl_blacs_intelmpi_lp64.a -lpthread -lm</append>
+    </SLIBS>
+    <FFLAGS>
+        <append> -O3 -march=haswell -mtune=haswell</append>
+    </FFLAGS>
+      <CPPDEFS>
+        <append MODEL="gptl"> -DHAVE_SLASHPROC </append>
+      </CPPDEFS>
+    <CFLAGS>
+          <append> -O3 -march=haswell -mtune=haswell</append>
+    </CFLAGS>
+    <NETCDF_FORTRAN_PATH>$(shell nf-config --prefix)</NETCDF_FORTRAN_PATH>
+    <NETCDF_C_PATH>$(shell nc-config --prefix)</NETCDF_C_PATH>
+    <MPICC> mpicc </MPICC>
+    <MPICXX> mpic++ </MPICXX>
+    <MPIFC> mpif90 </MPIFC>
+    <SCC> icc </SCC>
+    <SCXX> icpc </SCXX>
+    <SFC> ifort </SFC>
+  </compiler>
+
 
 </config_compilers>
